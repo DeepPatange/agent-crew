@@ -1,0 +1,74 @@
+<!doctype html>
+<!--
+  Agent Crew demo: opens the real office view (../media/office.js) in a normal browser with made-up sample data,
+  so you can see and work on the office without VS Code or Claude Code running.
+
+  Run from the repo root:   npx serve .   (or: python3 -m http.server)   then open /demo/
+  Add ?light to the URL for the light theme.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agent Crew demo</title>
+  <style>
+    /* stand-ins for the CSS variables VS Code gives a webview (Dark Modern theme) */
+    body.vscode-dark {
+      --vscode-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --vscode-editor-font-family: Menlo, Monaco, "Courier New", monospace;
+      --vscode-font-size: 13px;
+      --vscode-foreground: #cccccc;
+      --vscode-panel-background: #181818;
+      --vscode-editor-background: #1f1f1f;
+      --vscode-sideBar-background: #181818;
+      --vscode-panel-border: #2b2b2b;
+      --vscode-list-hoverBackground: #2a2d2e;
+      --vscode-textCodeBlock-background: #2b2b2b;
+      --vscode-button-background: #0078d4;
+      --vscode-button-foreground: #ffffff;
+      --vscode-notifications-background: #1f1f1f;
+      --vscode-notifications-foreground: #cccccc;
+      --vscode-notifications-border: #2b2b2b;
+    }
+    body.vscode-light {
+      --vscode-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --vscode-editor-font-family: Menlo, Monaco, "Courier New", monospace;
+      --vscode-font-size: 13px;
+      --vscode-foreground: #3b3b3b;
+      --vscode-panel-background: #f8f8f8;
+      --vscode-editor-background: #ffffff;
+      --vscode-sideBar-background: #f8f8f8;
+      --vscode-panel-border: #e5e5e5;
+      --vscode-list-hoverBackground: #f2f2f2;
+      --vscode-textCodeBlock-background: #f0f0f0;
+      --vscode-button-background: #005fb8;
+      --vscode-button-foreground: #ffffff;
+      --vscode-notifications-background: #ffffff;
+      --vscode-notifications-foreground: #3b3b3b;
+      --vscode-notifications-border: #e5e5e5;
+    }
+  </style>
+  <link rel="stylesheet" href="../media/office.css">
+</head>
+<body class="vscode-dark">
+  <div id="app">
+    <div id="stage"><button id="chatToggle" type="button" title="Show or hide the team chat">💬</button>
+      <canvas id="office" aria-label="Pixel office with your agents in the lobby, meeting room, dev floor, café and game room"></canvas>
+      <div id="toasts" aria-live="polite"></div>
+    </div>
+    <aside id="side" aria-label="Team chat">
+      <header id="head">
+        <div class="title"><span class="hash">#</span>crew-chat <span id="online"></span></div>
+        <div id="faces"></div>
+        <div class="topic">demo data · live from your Claude Code logs in VS Code · read-only · 0 tokens</div>
+      </header>
+      <div id="feed" role="log" aria-live="polite"></div>
+      <button id="newmsgs" type="button" hidden>New messages ↓</button>
+      <footer id="typing"></footer>
+    </aside>
+  </div>
+  <script>if (location.search.includes('light')) document.body.className = 'vscode-light';</script>
+  <script src="demo-data.js"></script>
+  <script src="../media/office.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+{
+  "name": "agent-crew",
+  "displayName": "Agent Crew",
+  "description": "Watch your Claude Code agents in a pixel office with a lobby, meeting room, dev floor, café and game room, plus a team chat of everything they do. Reads local logs only; uses no tokens.",
+  "version": "0.2.0",
+  "publisher": "ultimate-project-world",
+  "author": "Deep Patange",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DeepPatange/agent-crew.git"
+  },
+  "homepage": "https://github.com/DeepPatange/agent-crew#readme",
+  "bugs": {
+    "url": "https://github.com/DeepPatange/agent-crew/issues"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "ai-agents",
+    "agents",
+    "pixel-art",
+    "visualization",
+    "subagents"
+  ],
+  "private": true,
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Visualization",
+    "Other"
+  ],
+  "main": "./extension.js",
+  "scripts": {
+    "package": "npx --yes @vscode/vsce package",
+    "demo": "npx --yes serve . -l 5173"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "viewsContainers": {
+      "panel": [
+        {
+          "id": "agentCrew",
+          "title": "Agent Crew",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "agentCrew": [
+        {
+          "type": "webview",
+          "id": "agentCrew.office",
+          "name": "Office"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "agentCrew.show",
+        "title": "Agent Crew: Show the office"
+      }
+    ],
+    "configuration": {
+      "title": "Agent Crew",
+      "properties": {
+        "agentCrew.notifyWhenDone": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show a small pop-up when an agent finishes its work."
+        },
+        "agentCrew.projectsDir": {
+          "type": "string",
+          "default": "",
+          "description": "Folder that holds Claude Code's session logs. Leave empty to use ~/.claude/projects."
+        }
+      }
+    }
+  }
+}

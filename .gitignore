@@ -1,0 +1,8 @@
+# build output: packaged extensions are attached to GitHub Releases, not committed
+*.vsix
+node_modules/
+
+# OS / editor
+.DS_Store
+.vscode-test/
+*.log
